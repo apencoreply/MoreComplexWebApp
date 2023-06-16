@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web App</title>
+</head>
+<body>
+  <h1>Web App</h1>
+  
+  <div>
+    <label for="idInput">Enter ID:</label>
+    <input type="text" id="idInput" />
+    <button onclick="getData()">Get Data</button>
+  </div>
+  
+  <div id="result"></div>
+
+  <script>
+    function getData() {
+      const id = document.getElementById('idInput').value;
+      
+      fetch(`https://apapifunction.azurewebsites.net/api/GetData/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          const resultElement = document.getElementById('result');
+          resultElement.innerHTML = `ID: ${data.id}<br/>Message: ${data.message}`;
+        })
+        .catch(error => {
+          const resultElement = document.getElementById('result');
+          resultElement.innerHTML = 'Error retrieving data.';
+          console.error(error);
+        });
+    }
+  </script>
+</body>
+</html>
