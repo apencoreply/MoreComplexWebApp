@@ -18,7 +18,7 @@
     function getData() {
       const id = document.getElementById('idInput').value;
       
-      fetch(`https://apapifunction.azurewebsites.net/api/GetData/`+id)
+      fetch(`https://apapifunction.azurewebsites.net/api/GetData/${id}`)
         .then(response => response.json())
         .then(data => {
           const resultElement = document.getElementById('result');
